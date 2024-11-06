@@ -3,45 +3,30 @@
     padding-left:1em !important;
     margin-left:1em;
 } */
-/* ul li::before {
+ul li::before {
     content: "•";
+    font-size: 30px;
     font-weight: bold;
-    display: inline-block;
-    width: 30px;
-  } */
+    /* display: inline-block; */
+    /* width: 30px; */
+  }
 ul li.Green::before {
-  content: "•";
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  width: 50px;
+ 
   color: green
 }
 
 ul li.Orange::before {
-  content: "•";
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  width: 50px;
+ 
   color: orange
 }
 
 ul li.Blue::before {
-  content: "•";
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  width: 50px;
+ 
   color: blue
 }
 
 ul li.Yellow::before {
-  content: "•";
-  font-size: 30px;
-  font-weight: bold;
-  display: inline-block;
-  width: 50px;
+ 
   color: yellow
 }
 
@@ -70,4 +55,11 @@ ul li.Yellow::before {
 .card-header{
   background-color: var(--primary);
   color: white;
+  font-weight: bold;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

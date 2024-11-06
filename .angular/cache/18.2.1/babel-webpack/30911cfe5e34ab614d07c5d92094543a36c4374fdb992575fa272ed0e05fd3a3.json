@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  authUrl: \"http://localhost:9000/stashook/login\",\n  markAttendance: \"http://localhost:9100/stashook/markAttendance\"\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

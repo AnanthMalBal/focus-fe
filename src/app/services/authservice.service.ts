@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 import Swal from 'sweetalert2';
+import { environment } from '../environments/environments';
 
 @Injectable({
   providedIn: 'root'
@@ -18,18 +19,18 @@ export class AuthserviceService {
 
   constructor(private http: HttpClient, private router: Router,) { }
 
- 
+  // http://localhost:3007/auth/auth
 
   login(data: any): Observable<any> {
     console.log("I am server");
-    return this.http.post("http://localhost:3007/auth/auth", data)
+    return this.http.post(`${environment.authUrl}`, data)
       .pipe(map((result: any) => {
         console.log(result);
         this.authresults = result;
         this.loginData = result;
         this.setData(this.loginData)
         if (this.authresults.accesstoken) {
-          localStorage.setItem('token', this.authresults.accesstoken);
+          this.saveToken(this.authresults.accesstoken);
           Swal.fire({
             text:
               this.authresults.message,
@@ -42,6 +43,20 @@ export class AuthserviceService {
 
   setData(loginData: any) {
     this.apiData.next(loginData)
+  }
+
+  saveToken(token: string): void {
+    localStorage.setItem('authToken', token);
+  }
+
+  // Get the token from local storage
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  // Remove token (for logout)
+  logout(): void {
+    localStorage.removeItem('authToken');
   }
 }
 

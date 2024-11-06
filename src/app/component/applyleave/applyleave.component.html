@@ -62,7 +62,7 @@
                             <div class="form-group pt-0 row">
                                 <div class="col-lg-6">
                                     <h6 style="color:var(--primary);">No.of Days</h6>
-                                    <input formControlName="noOfDays" type="text" class="form-control" [value]="daysdiff" readonly>
+                                    <input formControlName="noOfDays" type="text" class="form-control"  [(ngModel)]="daysdiff" >
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
             </div>
             <div class="col-4">
                 <div class="card border-light mb-3" style="width: 18rem;">
-                    <div class="card-header">
+                    <div class="card-header" style="font-weight: bold;">
                       Leave History
                     </div>
                     <ul class="list-group list-group-flush" *ngFor="let i of leavebal let index = index;" style="li::before {

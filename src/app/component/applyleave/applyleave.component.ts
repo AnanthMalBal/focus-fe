@@ -51,13 +51,18 @@ export class ApplyleaveComponent {
       noOfDays: ['', [Validators.required]]
 
     })
+    // this.updateNoOfDays(this.daysdiff);
     console.log("data",this.loginData)
     console.log("datid",this.loginData.Empid)
     console.log("datid",this.leaveform.value)
 
    
+  }
 
-   
+  updateNoOfDays(daysdiff: number) {
+    this.leaveform.patchValue({
+      noOfDays: daysdiff
+    });
   }
 
   sumbitLeave(){
@@ -69,8 +74,8 @@ export class ApplyleaveComponent {
     console.log('dates',from[0],to[0]);
     this.newdata= new LeaveModel();
     this.newdata.employeeId=this.loginData.Empid;
-    this.newdata.fromDate=from;
-    this.newdata.toDate=to;
+    this.newdata.fromDate=from[0];
+    this.newdata.toDate=to[0];
     this.newdata.symbol=leaveformData.symbol
     this.newdata.noOfDays=leaveformData.noOfDays;
     this.newdata.reason=leaveformData.reason;

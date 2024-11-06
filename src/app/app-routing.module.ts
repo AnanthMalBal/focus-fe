@@ -6,6 +6,7 @@ import { ApplyleaveComponent } from './component/applyleave/applyleave.component
 import { TimesheetComponent } from './component/timesheet/timesheet.component';
 import { LeavehistoryComponent } from './component/leavehistory/leavehistory.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
+import { ScancodeComponent } from './component/scancode/scancode.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -14,10 +15,8 @@ const routes: Routes = [
   {path:'timesheet',component:TimesheetComponent},
   {path:'leavehistory',component:LeavehistoryComponent},
   {path:'navbar',component:NavbarComponent},
-
-
-
-   { path: '', redirectTo: 'lmscalendar', pathMatch: 'full' }
+  {path:'scancode',component:ScancodeComponent},
+  {path: '', redirectTo: 'lmscalendar', pathMatch: 'full' }
 ];
 
 @NgModule({

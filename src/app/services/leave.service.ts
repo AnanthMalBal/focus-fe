@@ -42,4 +42,9 @@ addleave(data:LeaveModel): Observable<any> {
 
   }
 
+  cancelLeave(leaveId:any) : Observable<any>{
+    return this.http.post<any>("http://localhost:3007/users/userleavecancel",{leaveId})
+
+  }
+
 }

@@ -68,6 +68,7 @@ export class TimesheetComponent {
         console.log(result)
       })
     this.getDailylog(this.timesheetid);
+    this.timesheetform.reset();
   }
 
   workfor() {
@@ -123,7 +124,12 @@ export class TimesheetComponent {
 
   }
 
-  deletelog() {
+  deletelog(id:any) {
+    this.timesheetservice.deletedailylog(id)
+    .subscribe((res)=>{
+      console.log(" delete daily log",res)
+    })
+    this.getDailylog(this.timesheetid)
 
   }
 

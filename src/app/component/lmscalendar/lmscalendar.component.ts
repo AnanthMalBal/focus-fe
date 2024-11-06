@@ -35,7 +35,7 @@ export class LmscalendarComponent implements OnInit {
   ngOnInit(): void {
      this.lmslistvalue();
      console.log("data",this.empData)
-     console.log("datid",this.empData.Empid)
+     console.log("datid",this.empData.user.userId)
      this.leavebalance()
   }
 
@@ -98,7 +98,7 @@ export class LmscalendarComponent implements OnInit {
   onToggleClick(option: string) {
     this.selectedToggle = option;
     console.log('Selected Option:', this.selectedToggle);
-    this.attendanceservice.addattendance(this.empData.Empid,this.selectedToggle,this.mode)
+    this.attendanceservice.addattendance(this.empData.user.userId,this.selectedToggle,this.mode)
     .subscribe((res)=>{
       console.log(res)
       Swal.fire({

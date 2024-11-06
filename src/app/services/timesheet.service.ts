@@ -42,6 +42,12 @@ export class TimesheetService {
     return this.http.get<any>("http://localhost:3007/timesheet/getmarkedtime?employeeId="+id+"&date="+date);
   }
   
+  deletedailylog(autoId:any): Observable<any>{
+    console.log(" deleted"+autoId );
+    const body = { autoId };
+    return this.http.delete<any>("http://localhost:3007/timesheet/deleteUserDailyLog",{  body });
+  }
+
   addTimesheet(data:any): Observable<any> {
     console.log("data",data);
     return this.http.post("http://localhost:3007/users/addusersdailylog", data)

@@ -76,12 +76,12 @@
                 </div>
             </div>
             <div class="col-4 px-5 py-3">
-                <div class="card border-light ms-4" style="width: 18rem;">
-                    <div class="card-header">
+                <div class="card border-light ms-4" style="width: 20rem;">
+                    <div class="card-header" style="font-weight: bold;">
                         Timesheet on Dated: {{sentDate}}
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item ">Sign In:   {{signindata.markedTime | date:'HH:mm:ss' }}
+                        <li class="list-group-item log-item ">Sign In:   {{signindata.markedTime | date:'HH:mm:ss' }}
                         </li>
                         <li class="list-group-item ">Total Working Minutes:  {{workingMin}}
                         </li>
@@ -89,13 +89,13 @@
                     </ul>
                 </div>
 
-                <div class="card border-light ms-4" style="width: 18rem;">
-                    <div class="card-header">
+                <div class="card border-light ms-4" style="width: 20rem;">
+                    <div class="card-header" style="font-weight: bold;">
                         Timesheet Added: {{sentDate}}
                     </div>
                     <ul class="list-group list-group-flush" *ngFor="let i of dailylogData let index = index;">
-                        <li class="list-group-item ">{{i.processId}}   :   {{i.actualTime}}&nbsp;&nbsp;&nbsp;
-                            <i class="fas fa-trash float-end" (click)="deletelog()" style="align-items: end;margin-right: 0px;"></i>
+                        <li class="list-group-item log-item ">{{i.processId}}   :   {{i.actualTime}}&nbsp;&nbsp;&nbsp;
+                            <i class="fas fa-trash float-end" (click)="deletelog(i.autoId)" style="align-items: end;margin-right: 0px;"></i>
                         </li>
                         
 

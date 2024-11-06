@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { LeaveService } from 'src/app/services/leave.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-leavehistory',
@@ -30,4 +31,18 @@ constructor(private leaveservice:LeaveService,
     })
 
   }
+  cancelleave(id:any){
+    this.leaveservice.cancelLeave(id)
+    .subscribe((result:any)=>{
+      const resData=result
+      Swal.fire({
+        text:
+          resData.message,
+          confirmButtonColor: '#2ecc71',
+      });
+      this.getLeaves();
+    })
+
+  }
+
 }

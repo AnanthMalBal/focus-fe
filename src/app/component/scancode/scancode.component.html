@@ -1,0 +1,20 @@
+<div class="outer">
+    <div class="container mt-2">
+
+        <app-navbar></app-navbar>
+
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div class="p-5  border rounded">
+                <div *ngIf="isCameraActive">
+                        <h5 class="card-title">Scan QR/Bar code</h5>
+                        <zxing-scanner [formats]="formats" (scanSuccess)="onCodeResult($event)"
+                            [device]="device"  (scanError)="onScanError($event)"></zxing-scanner>
+                            </div>
+
+                        <!-- <div *ngIf="scannedResult">Scanned Code: {{ scannedResult }}</div> -->
+                    
+            </div>
+        </div>
+
+    </div>
+</div>

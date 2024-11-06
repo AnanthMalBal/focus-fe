@@ -2,7 +2,7 @@
     <div class="container mt-2">
 
         <app-navbar></app-navbar>
-        <div class="table-responsive" style="overflow-x: auto;max-height: 600px; overflow-y: auto;">
+        <div class="table-responsive custom-scrollbar" style="overflow-x: auto;max-height: 600px; overflow-y: auto;">
             <table class="table" id="table" data-toggle="table" data-height="300">
                 <thead class="thead" style="background-color: var(--primary);color: white;">
                     <tr>
@@ -32,7 +32,7 @@
                         <td>{{i.createdDate}}</td>
                         <td>{{i.modifiedDate}}</td>
                         <td>{{i.status}}</td>
-                        <td><button type="submit"  [disabled]="(i.status =='Approved' )" style="background-color:var(--primary);color: white; " class="btn btn-sm">CANCEL</button>
+                        <td><button type="submit" (click)="cancelleave(i.leaveId)"  [disabled]="(i.status =='Cancel' )" style="background-color:var(--primary);color: white; " class="btn btn-sm">CANCEL</button>
                         </td>
                     </tr>
                 </tbody>

@@ -49,8 +49,8 @@
             This Month
           </div>
           <ul class="list-group list-group-flush" *ngFor="let i of lmslist let index = index;">
-            <li class="list-group-item {{i.color}}">{{i.description}}
-              <span class="badge badge-success badge-pill" style="text-align: right;">    {{i.sno}}</span>
+            <li class="list-group-item {{i.color}} log-item">{{i.description}}
+              <span class="badge badge-success badge-pill">{{i.sno}}</span>
             </li>
 
           </ul>
@@ -65,7 +65,7 @@
           <ul class="list-group list-group-flush" *ngFor="let i of leavebal let index = index;" style="li::before {
                     color: blue;
                   }">
-            <li class="list-group-item">{{i.Description}}
+            <li class="list-group-item log-item">{{i.Description}}
               <span class="badge badge-success badge-pill" style="text-align: right;">{{i.Count}}</span>
             </li>
           </ul>
