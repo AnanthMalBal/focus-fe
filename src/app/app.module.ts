@@ -14,6 +14,8 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { LeavehistoryComponent } from './component/leavehistory/leavehistory.component';
 import { ServicesInterceptor } from './token/services.interceptor';
 import { ScancodeComponent } from './component/scancode/scancode.component';
+import { CreatecodeComponent } from './component/createcode/createcode.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 // import { LmsserviceService } from './services/lmsservice.service';
 
@@ -26,7 +28,8 @@ import { ScancodeComponent } from './component/scancode/scancode.component';
     TimesheetComponent,
     NavbarComponent,
     LeavehistoryComponent,
-    ScancodeComponent
+    ScancodeComponent,
+    CreatecodeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +39,7 @@ import { ScancodeComponent } from './component/scancode/scancode.component';
     AppRoutingModule,
     FullCalendarModule,
     ZXingScannerModule,
+    QRCodeModule,
   ],
   providers:[{ provide: HTTP_INTERCEPTORS, useClass: ServicesInterceptor, multi: true },],
   bootstrap: [AppComponent]

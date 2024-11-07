@@ -24,12 +24,10 @@ export class ScancodeComponent {
     this.scannedResult = resultString;
     this.closeCamera();
     if (this.scannedResult.startsWith('http')) {
-      // Navigate to the scanned URL
       window.location.href = this.scannedResult;
-    } else if(this.scannedResult.startsWith('upi://pay')) {
+    } else if (this.scannedResult.startsWith('upi://pay')) {
       window.location.href = this.scannedResult;
-    }
-    else {
+    } else {
       console.error('Scanned code is not a valid URL:', this.scannedResult);
     }
   }

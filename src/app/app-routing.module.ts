@@ -7,6 +7,7 @@ import { TimesheetComponent } from './component/timesheet/timesheet.component';
 import { LeavehistoryComponent } from './component/leavehistory/leavehistory.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { ScancodeComponent } from './component/scancode/scancode.component';
+import { CreatecodeComponent } from './component/createcode/createcode.component';
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path:'leavehistory',component:LeavehistoryComponent},
   {path:'navbar',component:NavbarComponent},
   {path:'scancode',component:ScancodeComponent},
+  {path:'createcode',component:CreatecodeComponent},
+
   {path: '', redirectTo: 'lmscalendar', pathMatch: 'full' }
 ];
 

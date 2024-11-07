@@ -1,0 +1,43 @@
+<div class="outer">
+    <div class="container mt-2">
+        <app-navbar></app-navbar>
+        <div class="row app-container p-2">
+            <div class="col-6">
+                <div class="panel ">
+                    <div class="panel-heading">
+                        <h3 class="pt-1 font-weight-bold" style="color:var(--primary);">
+                            Create QR code
+                        </h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="QRcodeform" (ngSubmit)="createQR()">
+                            <div class="form-group pt-0 row">
+                                <div class="col-lg-6">
+                                    <h6 style="color:var(--primary);">Product Name</h6>
+                                    <input formControlName="productName" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group pt-0 row">
+                                <div class="col-lg-6">
+                                    <h6 style="color:var(--primary);">Product Details</h6>
+                                    <input formControlName="productDetails" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group pt-4 row">
+                                <div class="col-lg-2">
+                                    <button type="submit" 
+                                        style="background-color:var(--primary); color: white;"
+                                        class="btn btn-lg">Generate QR Code</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-6">
+                <qrcode [qrdata]="qrCodeData" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+        </div>
+    </div>
+</div>
