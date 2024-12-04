@@ -11,7 +11,7 @@ import { environment } from '../environments/environments';
   providedIn: 'root'
 })
 export class AuthserviceService {
-
+  menuresults: any;
   authresults: any;
   private apiData = new BehaviorSubject<any>(null);
   public apiData$ = this.apiData.asObservable();
@@ -25,20 +25,29 @@ export class AuthserviceService {
     console.log("I am server");
     return this.http.post(`${environment.authUrl}`, data)
       .pipe(map((result: any) => {
-        console.log(result);
+        console.log("from authserver",result);
         this.authresults = result;
         this.loginData = result;
         this.setData(this.loginData)
         if (this.authresults.accesstoken) {
           this.saveToken(this.authresults.accesstoken);
+          localStorage.setItem('token', this.authresults.accesstoken);
+          localStorage.setItem('userobject', this.authresults.user);
+          localStorage.setItem('roles', this.authresults.user.roles);
+          this.getmenu(this.authresults.user.roles);
           Swal.fire({
             text:
               this.authresults.message,
-              confirmButtonColor: '#2ecc71',
+            confirmButtonColor: '#2ecc71',
           });
-          this.router.navigate(["lmscalendar"])
+          this.router.navigate(["dashboard"])
         }
       }))
+  }
+
+  getmenu(role: any): Observable<any> {
+    return this.http.post(`${environment.menuUrl}`, {roles:role})
+
   }
 
   setData(loginData: any) {

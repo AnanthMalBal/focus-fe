@@ -1,3 +1,76 @@
+.container-bar {
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Align with the right margin */
+  background-color: rgb(133, 187, 131);
+  z-index: 1040; /* Ensure it's above the content */
+  padding: 10px;
+  border-radius: 5px;
+}
+
 a{
     color: black;
 }
+.nav-tabs {
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .nav-item {
+    position: relative;
+  }
+  
+  .nav-link {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 15px;
+  }
+  
+  .nav-link:hover {
+    color: var(--primary);
+  }
+  
+  .nav-submenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    z-index: 1000;
+  }
+  
+  .nav-item:hover .nav-submenu {
+    display: block;
+  }
+  
+  .nav-submenu .nav-link {
+    padding: 5px 15px;
+    white-space: nowrap;
+  }
+
+  .popover-card {
+    position: fixed;
+    top: 20%; /* Adjust to position the popover vertically */
+    right: -300px; /* Hidden state */
+    width: 300px;
+    transition: right 0.3s ease-in-out;
+    z-index: 1050; /* Ensures it appears above other elements */
+  }
+  
+  .popover-card.show {
+    right: 0; /* Visible state */
+  }
+  
+  .card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .buttonstyle{
+    background-color: var(--primary);
+    color: white;
+  }

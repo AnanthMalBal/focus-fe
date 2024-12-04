@@ -89,7 +89,7 @@ export class LmscalendarComponent implements OnInit {
   }
 
   leavebalance(){
-    this.lmsservice.getleavebalance(this.empData.Empid).subscribe(data=>{
+    this.lmsservice.getleavebalance(this.empData.user.userId).subscribe(data=>{
       this.leavebal=data[0]
       console.log("leavebal",this.leavebal)
     })
@@ -100,7 +100,7 @@ export class LmscalendarComponent implements OnInit {
     console.log('Selected Option:', this.selectedToggle);
     this.attendanceservice.addattendance(this.empData.user.userId,this.selectedToggle,this.mode)
     .subscribe((res)=>{
-      console.log(res)
+      console.log('onToggleClick',res)
       Swal.fire({
         text:
           res.message,

@@ -6,13 +6,19 @@
         <div class="d-flex justify-content-center align-items-center vh-100">
             <div class="p-5  border rounded">
                 <div *ngIf="isCameraActive">
-                        <h5 class="card-title">Scan QR/Bar code</h5>
-                        <zxing-scanner [formats]="formats" (scanSuccess)="onCodeResult($event)"
-                            [device]="device"  (scanError)="onScanError($event)"></zxing-scanner>
-                            </div>
+                    <h5 class="card-title">Scan QR/Bar code</h5>
+                    <zxing-scanner *ngIf="!selectedFile" #scanner [formats]="formats"
+                        (scanSuccess)="onCodeResult($event)" [device]="device"
+                        (scanError)="onScanError($event)"></zxing-scanner>
+                </div>
 
-                        <!-- <div *ngIf="scannedResult">Scanned Code: {{ scannedResult }}</div> -->
-                    
+                <div *ngIf="imageUrl">
+                    <h4>Uploaded Image:</h4>
+                    <img [src]="imageUrl" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+                </div>
+
+                <h3>Or upload an image</h3>
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" />
             </div>
         </div>
 

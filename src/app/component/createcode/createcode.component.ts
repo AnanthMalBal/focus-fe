@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 @Component({
   selector: 'app-createcode',
@@ -8,9 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreatecodeComponent {
 
+  @ViewChild('qrCodeContainer', { static: false }) qrCodeContainer!: ElementRef;
+
   QRcodeform!:FormGroup;
   qrCodeData!:string;
   formdata:any;
+  isQRCodeGenerated = false;
 
   constructor(private fb:FormBuilder){}
 
@@ -29,6 +34,22 @@ export class CreatecodeComponent {
       name: this.formdata.productName,
       details: this.formdata.productDetails
     });
-
+    this.isQRCodeGenerated = true;
   }
+
+  async downloadAsPDF() {
+    const element = this.qrCodeContainer.nativeElement;
+    const canvas = await html2canvas(element);
+    const imageData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF();
+    const imgProps = pdf.getImageProperties(imageData);
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+    pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save(`${this.formdata.productName}-QRCode.pdf`);
+    this.formdata.reset();
+  } 
+ 
 }

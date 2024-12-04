@@ -39,7 +39,7 @@ export class TimesheetComponent {
       this.sentDate = params[('date')],);
     console.log('getdate', this.sentDate)
 
-    this.getsignin();
+    // this.getsignin();
     this.workfor();
     this.departmentfor();
     this.projectfor();
@@ -116,7 +116,7 @@ export class TimesheetComponent {
         this.totalActualTime = this.dailylogData.reduce((sum: any, item: any) => sum + item.actualTime, 0);
         console.log("totaltime", this.totalActualTime, this.workingMin ,this.totalActualTime);
         if (this.totalActualTime >= this.workingMin) {
-          console.log(" iam there", );
+          console.log("iam there", );
           this.buttonenable = true;
         }
 

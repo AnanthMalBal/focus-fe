@@ -11,7 +11,7 @@ import { CreatecodeComponent } from './component/createcode/createcode.component
 
 const routes: Routes = [
   {path:'login',component:LoginComponent},
-  {path:'lmscalendar',component:LmscalendarComponent},
+  {path:'dashboard',component:LmscalendarComponent},
   {path:'applyleave',component:ApplyleaveComponent},
   {path:'timesheet',component:TimesheetComponent},
   {path:'leavehistory',component:LeavehistoryComponent},
@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'scancode',component:ScancodeComponent},
   {path:'createcode',component:CreatecodeComponent},
 
-  {path: '', redirectTo: 'lmscalendar', pathMatch: 'full' }
+  {path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

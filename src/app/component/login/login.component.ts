@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
   
 
   loginProcess() {
-    this.router.navigate(["login"])
     console.log("form", this.loginForm.value);
     this.authService.login(this.loginForm.value)
       .subscribe((results) => {
