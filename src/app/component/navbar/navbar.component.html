@@ -1,75 +1,55 @@
-<!-- <div class="row app-container p-2"> -->
-<div class=" d-flex justify-content-between align-items-center container-bar"
-    style="background-color: rgb(133, 187, 131);">
-    <div class="p-2">
-        <img src="assets/focus.jpg  " style="width:100x;height:50px;">
-        <!-- style="width:100x;height:50px;margin-left:5px;margin-top: 5px; -->
-    </div>
-    <div class="p-2">
-        <button class="btn btn-secondary dropdown-toggle d-flex align-items-center buttonstyle" type="button" id="profileMenuButton"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/profileimg.png" alt="Profile" class="rounded-circle me-2"
-                style="width: 40px; height: 40px;" />
-            <span>userName</span>
-        </button>
-    <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="profileMenuButton">
-        <!-- Profile Header -->
-        <li class="px-3 py-2">
-            <img src="assets/profileimg.png" alt="Profile" class="rounded-circle mb-2"
-                style="width: 60px; height: 60px;" />
-            <h6 class="mb-0">userName </h6>
-            <p class="text-muted mb-1"> userEmail </p>
-        </li>
-        <li>
-            <hr class="dropdown-divider" />
-        </li>
-        <!-- Menu Items -->
-        <li><a class="dropdown-item">My Profile</a></li>
-        <li><a class="dropdown-item">Settings</a></li>
-        <li>
-            <hr class="dropdown-divider" />
-        </li>
-        <li>
-            <a class="dropdown-item text-danger">Logout</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class=" d-flex justify-content-between align-items-center container-bar"
+            style="background-color: rgb(133, 187, 131);">
+            <div class="p-2">
+                <img src="assets/focus.jpg  " style="width:100x;height:50px;">
+                <!-- style="width:100x;height:50px;margin-left:5px;margin-top: 5px; -->
+            </div>
+            <div class="p-2">
+                <button class="btn btn-secondary dropdown-toggle d-flex align-items-center buttonstyle" type="button"
+                    id="profileMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/profileimg.png" alt="Profile" class="rounded-circle me-2"
+                        style="width: 40px; height: 40px;" />
+                    <span>userName</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="profileMenuButton">
+                    <!-- Profile Header -->
+                    <li class="px-3 py-2">
+                        <img src="assets/profileimg.png" alt="Profile" class="rounded-circle mb-2"
+                            style="width: 60px; height: 60px;" />
+                        <h6 class="mb-0">userName </h6>
+                        <p class="text-muted mb-1"> userEmail </p>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <!-- Menu Items -->
+                    <li><a class="dropdown-item">My Profile</a></li>
+                    <li><a class="dropdown-item">Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <ul class="nav nav-tabs">
+        <li *ngFor="let item of nestedMenu" class="nav-item">
+            <a class="nav-link" [routerLink]="item.actionURL">{{ item.menuName }}</a>
+
+            <!-- Check if the item has children -->
+            <ul *ngIf="item.children && item.children.length > 0" class="nav-submenu">
+                <li *ngFor="let child of item.children" class="nav-item">
+                    <a class="nav-link" [routerLink]="child.actionURL">{{ child.menuName }}</a>
+                </li>
+            </ul>
         </li>
     </ul>
-</div>
-
-</div>
-
-<!-- modal -->
-<!-- <div [ngClass]="{ 'show': isPopoverVisible }" class="popover-card">
-            <div class="card">
-              <div class="card-header">
-                Profile Details
-              </div>
-              <div class="card-body">
-                <p>Name: John Doe</p>
-                <p>Email: john.doeexample.com</p>
-                <button class="btn btn-secondary" (click)="togglePopover()">Close</button>
-              </div>
-            </div>
-          </div> -->
-
-<!-- <div style=" text-align: right;  ">
-        <span id="text" class="p-2" style="font-weight: bold;color:  aliceblue;">
-        </span>
-    </div> -->
-
-
-<!-- </div> -->
-<ul class="nav nav-tabs">
-    <li *ngFor="let item of nestedMenu" class="nav-item">
-        <a class="nav-link" [routerLink]="item.actionURL">{{ item.menuName }}</a>
-
-        <!-- Check if the item has children -->
-        <ul *ngIf="item.children && item.children.length > 0" class="nav-submenu">
-            <li *ngFor="let child of item.children" class="nav-item">
-                <a class="nav-link" [routerLink]="child.actionURL">{{ child.menuName }}</a>
-            </li>
-        </ul>
-    </li>
-</ul>
+    </div>
+</nav>
 
 <!-- <ul class="nav nav-tabs">
     <li class="nav-item">
