@@ -14,6 +14,8 @@ export class NavbarComponent {
   isPopoverVisible: boolean = false;
   empData:any;
   userName:any;
+  role:any;
+  empId:any;
 
   constructor(private authservice: AuthserviceService) {
     authservice.apiData$.subscribe(data => this.empData = data)
@@ -25,7 +27,9 @@ export class NavbarComponent {
     console.log('roles', this.roles);
     this.getmenufromapi();
     console.log("username",this.empData.user.userName)
-    this.userName=this.empData.user.userName
+    this.userName=this.empData.user.userName;
+    this.role=this.empData.user.roles[0];
+    this.empId=this.empData.user.userId;
 
   }
 

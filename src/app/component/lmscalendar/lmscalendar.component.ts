@@ -6,6 +6,7 @@ import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import { AuthserviceService } from 'src/app/services/authservice.service';
  import { LmsserviceService } from 'src/app/services/lmsservice.service';
 import { MarkattendanceService } from 'src/app/services/markattendance.service';
+import { TimesheetService } from 'src/app/services/timesheet.service';
 import Swal from 'sweetalert2';
 
 
@@ -26,18 +27,21 @@ export class LmscalendarComponent implements OnInit {
   count:any;
   description:any;
   userName:any;
+  markedHours:any;
 
 
   constructor(
     private lmsservice: LmsserviceService,
     private authservice:AuthserviceService,
     private attendanceservice:MarkattendanceService,
+    private timesheetservice:TimesheetService,
     private router:Router
     ) {  authservice.apiData$.subscribe(data => this.empData = data)}
 
   ngOnInit(): void {
      console.log("data",this.empData)
-     this.leavebalance()
+     this.leavebalance();
+     this.getsignin();
   }
 
   calendarOptions: CalendarOptions = {
@@ -109,6 +113,17 @@ export class LmscalendarComponent implements OnInit {
       });
     })
 
+  }
+
+  getsignin() {
+    this.timesheetservice.getSignDate()
+      .subscribe((res) => {
+        const markedData=res;
+         this.markedHours = markedData.symbol;
+        console.log("markedhours",this.markedHours)
+        this.selectedToggle = this.markedHours;
+
+      })
   }
 
 }

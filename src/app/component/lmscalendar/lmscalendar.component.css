@@ -11,22 +11,26 @@ ul li::before {
     /* width: 30px; */
   }
 ul li.Green::before {
- 
   color: green
 }
 
 ul li.Orange::before {
- 
   color: orange
 }
 
+ul li.White::before {
+  color: white
+}
+
+ul li.Grey::before {
+  color: gray
+}
+
 ul li.Blue::before {
- 
   color: blue
 }
 
 ul li.Yellow::before {
- 
   color: yellow
 }
 
