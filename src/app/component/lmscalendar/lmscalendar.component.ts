@@ -23,6 +23,9 @@ export class LmscalendarComponent implements OnInit {
   selectedToggle: string = '';
   mode="WFH";
   name:string="demo";
+  count:any;
+  description:any;
+  userName:any;
 
 
   constructor(
@@ -33,9 +36,7 @@ export class LmscalendarComponent implements OnInit {
     ) {  authservice.apiData$.subscribe(data => this.empData = data)}
 
   ngOnInit(): void {
-     this.lmslistvalue();
      console.log("data",this.empData)
-     console.log("datid",this.empData.user.userId)
      this.leavebalance()
   }
 
@@ -67,11 +68,12 @@ export class LmscalendarComponent implements OnInit {
       .subscribe((res)=>{
         console.log("calendardata",res[0]);
         this.calenderItem=res[0];
+        this.lmslist=res[1];
         const events: EventInput[] = [];
         for(let i of this.calenderItem){
           events.push({
             // title:  i.title,
-            date: i.sdate,
+            date: i.cDate,
             color: i.color.toLowerCase(),
             display:'list-item'
           })}
@@ -81,16 +83,14 @@ export class LmscalendarComponent implements OnInit {
     }
   )}
 
-  lmslistvalue(){
-    this.lmsservice.getlmslist().subscribe(data=>{
-      this.lmslist=data
-      console.log("lmslist",this.lmslist)
-    })
-  }
-
+ 
   leavebalance(){
-    this.lmsservice.getleavebalance(this.empData.user.userId).subscribe(data=>{
-      this.leavebal=data[0]
+    this.lmsservice.getleavebalance().subscribe(data=>{
+      this.leavebal=data;
+      this.count=this.leavebal.Count;
+      this.description=this.leavebal.Description;
+
+
       console.log("leavebal",this.leavebal)
     })
   }
@@ -98,7 +98,7 @@ export class LmscalendarComponent implements OnInit {
   onToggleClick(option: string) {
     this.selectedToggle = option;
     console.log('Selected Option:', this.selectedToggle);
-    this.attendanceservice.addattendance(this.empData.user.userId,this.selectedToggle,this.mode)
+    this.attendanceservice.addattendance(this.selectedToggle,this.mode)
     .subscribe((res)=>{
       console.log('onToggleClick',res)
       Swal.fire({

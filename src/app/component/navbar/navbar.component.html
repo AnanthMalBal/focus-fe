@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <div class=" d-flex justify-content-between align-items-center container-bar"
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(133, 187, 131);">
+    <!-- <div class="container"> -->
+        <div class=" d-flex justify-content-between align-items-center container"
             style="background-color: rgb(133, 187, 131);">
             <div class="p-2">
                 <img src="assets/focus.jpg  " style="width:100x;height:50px;">
@@ -11,14 +11,14 @@
                     id="profileMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="assets/profileimg.png" alt="Profile" class="rounded-circle me-2"
                         style="width: 40px; height: 40px;" />
-                    <span>userName</span>
+                    <span>{{userName}} </span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="profileMenuButton">
                     <!-- Profile Header -->
                     <li class="px-3 py-2">
                         <img src="assets/profileimg.png" alt="Profile" class="rounded-circle mb-2"
                             style="width: 60px; height: 60px;" />
-                        <h6 class="mb-0">userName </h6>
+                        <h6 class="mb-0">{{userName}} </h6>
                         <p class="text-muted mb-1"> userEmail </p>
                     </li>
                     <li>
@@ -31,11 +31,14 @@
                         <hr class="dropdown-divider" />
                     </li>
                     <li>
-                        <a class="dropdown-item text-danger">Logout</a>
+                        <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
+    <!-- </div> -->
+</nav>
+
     <ul class="nav nav-tabs">
         <li *ngFor="let item of nestedMenu" class="nav-item">
             <a class="nav-link" [routerLink]="item.actionURL">{{ item.menuName }}</a>
@@ -48,8 +51,6 @@
             </ul>
         </li>
     </ul>
-    </div>
-</nav>
 
 <!-- <ul class="nav nav-tabs">
     <li class="nav-item">

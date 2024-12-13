@@ -12,11 +12,11 @@ export class NavbarComponent {
   menuItems: any[] = [];
   nestedMenu: any[] = [];
   isPopoverVisible: boolean = false;
-
-  
-
+  empData:any;
+  userName:any;
 
   constructor(private authservice: AuthserviceService) {
+    authservice.apiData$.subscribe(data => this.empData = data)
   }
 
   ngOnInit(): void {
@@ -24,6 +24,9 @@ export class NavbarComponent {
     this.roles = localStorage.getItem('roles');
     console.log('roles', this.roles);
     this.getmenufromapi();
+    console.log("username",this.empData.user.userName)
+    this.userName=this.empData.user.userName
+
   }
 
   togglePopover(): void {
@@ -39,6 +42,11 @@ export class NavbarComponent {
       console.log('nestedMenu',this.nestedMenu);
 
     })
+  }
+
+  logout(){
+    console.log('logout');
+    localStorage.removeItem('token');
   }
   
   buildMenu(menuItems: any[]): any[] {

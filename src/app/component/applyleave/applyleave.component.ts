@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LeaveModel } from 'src/app/modals/leavemodel';
 import { AuthserviceService } from 'src/app/services/authservice.service';
 import { LeaveService } from 'src/app/services/leave.service';
@@ -24,13 +25,18 @@ export class ApplyleaveComponent {
   noDays:any='';
   capturedValue:any;
   daysdiff:any='';
+  minDate: string = '';
+  maxDate: string = '';
+  count:any;
+  description:any;
 
 
   constructor(
     private leaveservice:LeaveService,
     private fb:FormBuilder,
     private authservice:AuthserviceService,
-    private lmsservice:LmsserviceService
+    private lmsservice:LmsserviceService,
+    private router:Router
   ){
      authservice.apiData$.subscribe(data => this.loginData = data)
     }
@@ -51,12 +57,46 @@ export class ApplyleaveComponent {
       noOfDays: ['', [Validators.required]]
 
     })
-    // this.updateNoOfDays(this.daysdiff);
     console.log("data",this.loginData)
     console.log("datid",this.loginData.Empid)
     console.log("datid",this.leaveform.value)
 
-   
+    const currentDate = new Date();
+    this.from=this.formatDate(currentDate);
+    this.minDate = this.formatDate(currentDate);
+    this.maxDate = this.formatDate(currentDate);   
+  }
+
+  formatDate(date: Date): string {
+    // Format date as yyyy-MM-dd
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  onLeaveTypeChange(): void {
+    console.log("leavetypeevent")
+    const leavetype=this.leaveform.get('symbol')?.value;
+    const selectedLeaveType = this.leavedata.find(
+      (leave:any) => leave.leaveTypeId ===leavetype
+    );
+
+    if (selectedLeaveType) {
+      const maxDays = selectedLeaveType.maxDays;
+      console.log("+++(selectedLeaveType++")
+      // Calculate max date based on maxDays
+      const currentDate = new Date();
+      const maxDate = new Date(currentDate);
+      maxDate.setDate(currentDate.getDate() + maxDays);
+
+      // Update min and max dates
+      this.minDate = this.formatDate(currentDate);
+      this.maxDate = this.formatDate(maxDate);
+      console.log("+++(selectedLeaveType++",this.minDate,this.maxDate)
+
+
+    }
   }
 
   updateNoOfDays(daysdiff: number) {
@@ -71,13 +111,11 @@ export class ApplyleaveComponent {
     const leaveformData = this.leaveform.value;
     var from=leaveformData.fromDate.split('T');
      var to=leaveformData.toDate.split('T');
-    console.log('dates',from[0],to[0]);
+    console.log('dates',from[0],to[0],from,to);
     this.newdata= new LeaveModel();
-    this.newdata.employeeId=this.loginData.Empid;
     this.newdata.fromDate=from[0];
     this.newdata.toDate=to[0];
     this.newdata.symbol=leaveformData.symbol
-    this.newdata.noOfDays=leaveformData.noOfDays;
     this.newdata.reason=leaveformData.reason;
 
     this.leaveservice.addleave(this.newdata)
@@ -112,9 +150,16 @@ export class ApplyleaveComponent {
   }
 
   leavebalance(){
-    this.lmsservice.getleavebalance(this.loginData.Empid).subscribe(data=>{
-      this.leavebal=data[0]
-      console.log("leavebal",this.leavebal)
+    this.lmsservice.getleavebalance().subscribe(data=>{
+      this.leavebal=data
+      console.log("leavebal",this.leavebal);
+      this.count=this.leavebal.Count;
+      this.description=this.leavebal.Description;
+
     })
+  }
+
+  leavehistory(){
+    this.router.navigate(["leavehistory"])
   }
 }

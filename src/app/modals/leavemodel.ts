@@ -5,6 +5,8 @@ export class LeaveModel{
     symbol!:String;
     fromDate!: String;
     toDate !:String;
-    reason !: String
-
+    reason !: String;
+    page!: String;
+    perPage!: String;
+    sort!: String;
 }

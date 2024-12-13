@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe, throwError } from 'rxjs';
+import { environment } from '../environments/environments';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +12,28 @@ export class LmsserviceService {
   constructor(private http:HttpClient) { }
 
   getholidays(date:any): Observable<any>{
-    return this.http.get<any>("http://localhost:3007/timesheet/getHolidays?cdate="+date)
+    return this.http.post(`${environment.getLeaveHolidayColor}`,{"selectedDate":date})
+    .pipe(
+      tap(result => console.log("getLeaveHolidayColor fetched:", result)), 
+      catchError(error => {
+        console.error("Error fetching LeaveHolidayColor:", error);
+        return throwError(() => error); 
+      })
+    );
 
   }
 
-  getlmslist(): Observable<any>{
-    console.log(" check lms service" );
-    return this.http.get<any>("http://localhost:3007/timesheet/getLmsList");
-  }
+ 
 
-  getleavebalance(id:any): Observable<any>{
-    console.log(" id recieved",id );
+  getleavebalance(): Observable<any>{
     console.log(" leave balance service" );
-    return this.http.get<any>("http://localhost:3007/timesheet/getLeaveBalance?empid="+id);
+    return this.http.post(`${environment.getLeaveBalance}`,{})
+    .pipe(
+      tap(result => console.log("Leave balance fetched:", result)), 
+      catchError(error => {
+        console.error("Error fetching leave balance:", error);
+        return throwError(() => error); 
+      })
+    );
   }
 }

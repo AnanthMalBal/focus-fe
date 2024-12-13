@@ -49,8 +49,8 @@
             This Month
           </div>
           <ul class="list-group list-group-flush" *ngFor="let i of lmslist let index = index;">
-            <li class="list-group-item {{i.color}} log-item">{{i.description}}
-              <span class="badge badge-success badge-pill">{{i.sno}}</span>
+            <li class="list-group-item {{i.color}} log-item">{{i.title}}
+              <span class="badge badge-success badge-pill">{{i.count}}</span>
             </li>
 
           </ul>
@@ -62,11 +62,12 @@
           <div class="card-header">
             Your Leave Balance
           </div>
-          <ul class="list-group list-group-flush" *ngFor="let i of leavebal let index = index;" style="li::before {
+          <!-- *ngFor="let i of leavebal let index = index;" -->
+          <ul class="list-group list-group-flush"  style="li::before {
                     color: blue;
                   }">
-            <li class="list-group-item log-item">{{i.Description}}
-              <span class="badge badge-success badge-pill" style="text-align: right;">{{i.Count}}</span>
+            <li class="list-group-item log-item">{{description}}
+              <span class="badge badge-success badge-pill" style="text-align: right;">{{count}}</span>
             </li>
           </ul>
         </div>

@@ -13,10 +13,9 @@ export class MarkattendanceService {
   getdata:any;
   constructor(private http:HttpClient) { }
 
-  addattendance(id:any,symbol:any,mode:any): Observable<any> {
-    console.log('id got',id);
+  addattendance(symbol:any,mode:any): Observable<any> {
 
-    return this.http.post(`${environment.markAttendance}`,{"employeeId":id,"symbol":symbol,"mode":mode})
+    return this.http.post(`${environment.markAttendance}`,{"symbol":symbol,"mode":mode})
       .pipe(map((result: any) => {
         console.log(result);
         this.getdata=result;
